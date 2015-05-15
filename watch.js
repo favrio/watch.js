@@ -12,11 +12,7 @@
 	function _watch(target, callback) {
 		this.target = target;
 		this.callback = callback;
-		for (var prop in target) {
-			if (target.hasOwnProperty(prop)) {
-				this.guard(target, prop);
-			}
-		}
+		this.observe(target);
 	}
 	_watch.prototype = {
 		guard: function(target, prop) {
@@ -39,6 +35,17 @@
 			if (watch.isObject(target)) {
 				this.addSet(target);
 				this.addDel(target);
+			}
+			if (watch.isObject(target[prop])) {
+				console.log("go here");
+				this.observe(target[prop]);
+			}
+		},
+		observe: function(target) {
+			for (var prop in target) {
+				if (target.hasOwnProperty(prop)) {
+					this.guard(target, prop);
+				}
 			}
 		},
 		arrMock: function() {

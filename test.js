@@ -1,24 +1,24 @@
-/*
-var obj = {
-	name: "rose",
-	age: 18
-};
 
-watch(obj, function(prop, oldValue, newValue) {
-	console.log(prop, oldValue, newValue);
-});
+// var obj = {
+// 	name: "rose",
+// 	age: 18
+// };
 
-console.log("** 直接修改对象属性 **");
-obj.age = 20;
+// watch(obj, function(prop, oldValue, newValue) {
+// 	console.log(prop, oldValue, newValue);
+// });
 
-console.log(obj);
-console.log("** 新增对象属性 **");
-obj.$add("car", "BMW");
+// console.log("** 直接修改对象属性 **");
+// obj.age = 20;
 
-console.log("** 删除对象属性 **");
-obj.$del("car");
+// console.log(obj);
+// console.log("** 新增对象属性 **");
+// obj.$add("car", "BMW");
 
-*/
+// console.log("** 删除对象属性 **");
+// obj.$del("car");
+
+
 
 
 /*
@@ -32,6 +32,8 @@ arr[0] = 22;
 arr.push(999);
 */
 
+
+// 深层对象
 var fObj = {
 	son: {
 		name: "jack",
@@ -39,10 +41,16 @@ var fObj = {
 	},
 	son2: {
 		name: "fucker",
-		age: 17
+		age: 17,
+		grandSon: {
+			name: "just",
+			age: 2
+		}
 	}
 }
 
 watch(fObj, function(prop, oldValue, newValue) {
 	console.log(prop, oldValue, newValue);
 });
+
+fObj.son2.grandSon.name = "newer";
