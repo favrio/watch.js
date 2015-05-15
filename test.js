@@ -40,7 +40,7 @@ var fObj = {
 		age: 20
 	},
 	son2: {
-		name: "fucker",
+		name: "candy",
 		age: 17,
 		grandSon: {
 			name: "just",

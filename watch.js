@@ -74,8 +74,7 @@
 	/**
 	 * 工具函数
 	 */
-
-	watch.is = function(name) {
+	function is(name) {
 		var toString = Object.prototype.toString;
 		return function(obj) {
 			return toString.call(obj) === "[object " + name + "]";
@@ -84,7 +83,7 @@
 
 	var isArr = ["Arguments", "Function", "String", "Number", "Date", "RegExp", "Error", "Array", "Object"];
 	isArr.forEach(function(name) {
-		watch["is" + name] = watch.is(name);
+		watch["is" + name] = is(name);
 	});
 
 
