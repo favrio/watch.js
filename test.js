@@ -1,4 +1,3 @@
-
 // var obj = {
 // 	name: "rose",
 // 	age: 18
@@ -20,8 +19,6 @@
 
 
 
-
-/*
 // 纯数组
 var arr = [1, 2, 3, 4, 5];
 watch(arr, function(prop, oldValue, newValue) {
@@ -29,28 +26,30 @@ watch(arr, function(prop, oldValue, newValue) {
 });
 
 arr[0] = 22;
-arr.push(999);
-*/
+arr.splice(1, 1, 12);
+
+// console.log(arr);
+
 
 
 // 深层对象
-var fObj = {
-	son: {
-		name: "jack",
-		age: 20
-	},
-	son2: {
-		name: "candy",
-		age: 17,
-		grandSon: {
-			name: "just",
-			age: 2
-		}
-	}
-}
+// var fObj = {
+// 	son: {
+// 		name: "jack",
+// 		age: 20
+// 	},
+// 	son2: {
+// 		name: "candy",
+// 		age: 17,
+// 		grandSon: {
+// 			name: "just",
+// 			age: 2
+// 		}
+// 	}
+// }
 
-watch(fObj, function(prop, oldValue, newValue) {
-	console.log(prop, oldValue, newValue);
-});
+// watch(fObj, function(prop, oldValue, newValue) {
+// 	console.log(prop, oldValue, newValue);
+// });
 
-fObj.son2.grandSon.name = "newer";
+// fObj.son2.grandSon.name = "newer";

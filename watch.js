@@ -17,7 +17,7 @@
 	_watch.prototype = {
 		guard: function(target, prop) {
 			var self = this;
-			if (prop.substr(0, 2) == "__") {
+			if (prop.substr(0, 2) == "__" || watch.isFunction(target[prop])) {
 				return;
 			}
 			var currentValue = target["__" + prop] = target[prop];
@@ -29,6 +29,7 @@
 					self.onPropChangeHandle(prop, this["__" + prop], value);
 					this["__" + prop] = value;
 
+
 				},
 				configurable: true
 			});
@@ -36,10 +37,12 @@
 				this.addSet(target);
 				this.addDel(target);
 			}
-			if (watch.isObject(target[prop])) {
-				console.log("go here");
+			if (watch.isObject(target[prop]) || watch.isArray(target[prop])) {
 				this.observe(target[prop]);
 			}
+			// if(watch.isArray(target[prop])) {
+			// 	this.arrMock(target[prop]);
+			// }
 		},
 		observe: function(target) {
 			for (var prop in target) {
@@ -47,9 +50,19 @@
 					this.guard(target, prop);
 				}
 			}
+			if (watch.isArray(target)) {
+				this.arrMock(target);
+			}
 		},
-		arrMock: function() {
-
+		arrMock: function(target) {
+			var self = this;
+			arrMethods.forEach(function(name) {
+				target[name] = function() {
+					Array.prototype[name].apply(this, arguments);
+					self.observe(target);
+					self.onPropChangeHandle(name, undefined, arguments.length ? arguments: undefined);
+				}
+			});
 		},
 		addSet: function(target) {
 			var self = this;
@@ -85,6 +98,8 @@
 	isArr.forEach(function(name) {
 		watch["is" + name] = is(name);
 	});
+
+	var arrMethods = ["push", "unshift", "splice", "pop", "shift"];
 
 
 
