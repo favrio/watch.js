@@ -75,3 +75,21 @@ watch(fObj, function(prop, oldValue, newValue) {
 
 fObj.son2.grandSon.name = "newer";
 ```
+
+数组中的对象列表
+```javascript
+var objArr = [{
+	name: "first",
+	age: 1
+}, {
+	name: "2rd",
+	age: 2
+}];
+
+watch(objArr, function(prop, oldValue, newValue) {
+	console.log(prop, oldValue, newValue);
+});
+
+objArr[0].name = "Im big";
+objArr[1].age = 3;
+```
